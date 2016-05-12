@@ -1,17 +1,12 @@
-#include<stdio.h>
-#include<stdlib.h>
+/**
+ *	File	list.c
+ *	Created 03-05-2016
+ *	Author	Matthijs Visser
+ *			Amsterdam University of applied sciences
+ *	contact Matthijs.Visser@hva.nl
+**/
 
-#define DATASIZE 8
-#define FIRSTDATAITEM 0
-
-typedef struct node {
-	int data [DATASIZE];
-	struct node * next;
-}node_t;
-
-node_t *head = NULL;
-
-int sizeOfList(node_t *head);
+#include "list.h"
 
 void printHeaderList (void){
 	printf("\nPopulationlist\n");
@@ -110,23 +105,6 @@ int* pop (node_t ** head){
     *head = next_node;
 
 	return returnArray;
-}
-
-int* getListData (node_t **head){
-	node_t * next_node = NULL;
-	static int returnArray[DATASIZE];
-
-	next_node = (*head)->next;
-    for (int item = 0; item < DATASIZE; ++item){
-    	returnArray[item] = (*head) -> data[item];
-    	printf("%d\t", (*head) -> data[item]);
-	}
-	printf("\n");
-
-}
-
-void popList(){
-
 }
 
 /**
