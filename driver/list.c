@@ -142,7 +142,6 @@ int* popListByNumber(node_t ** head, int indexNumber){
 	current -> next = temp_node -> next;
 	free(temp_node);
 
-
 	return returnArray;
 }
 

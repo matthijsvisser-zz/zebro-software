@@ -12,22 +12,39 @@
 
 /**
  * Determines the meaning of the message
- * @param  value    received value
+ * @param  	value	received value
+ * @param	DetermineCommandtype
  */
-// void Determine (){
-// 	unsigned char value; 
-// 	value = uart_getchar()
+void DetermineCommandtype (){
+	char value[16];
+	char command[16];
 
-// 	switch(value){
-// 		case '=':
-// 			break;
-// 		case:
-// 			break;
-// 		default:
-// 			printf("%c\n", value);	
-// 			break;	
-// 	}
-// }
+	memset(command, '\0', strlen(command));
+
+	value[0] = getchar();
+	//value[0] = uart_getchar(stdin);
+	strcpy(command, value);
+
+	while (value[0] != ':'){
+		value[0] = getchar();
+		//value[0] = uart_getchar(stdin);
+		if (value[0] != ':'){strcat(command, value);};
+	}
+
+	if (strcmp(command, 	 "RRN") == 0){ // Data Notification Message
+		printf("RRN\n");
+	}else if(strcmp(command, "DNO") == 0){ // Node ID Notification Message
+		printf("DNO\n");
+	}else if(strcmp(command, "NIN") == 0){ // Ranging Result Notification Message
+		printf("NIN\n");
+	}else if(strcmp(command, "SDAT") == 0){// SDAT Notification Messages
+		printf("SDAT\n");
+	}else if(strcmp(command, "AIR") == 0){ // AIR Notification Message
+		printf("AIR\n");
+	}else{
+		printf("else\n");
+	}
+}
 
 /**
  * Translates the received message converts characters
@@ -37,7 +54,9 @@
  */
 char * TranslateMessage (void){
 	char value [2];
-	static char message[20];
+	static char message[64];
+
+	memset(message, '\0', strlen(message));
 
 	value[0] = getchar();
 	//value[0] = uart_getchar(stdin);
@@ -53,7 +72,14 @@ char * TranslateMessage (void){
 
 int main (void){
 	system("clear");
-	printf("%s",TranslateMessage());
+	char test[64];
+	// strcpy(test,TranslateMessage());
+	// printf("%s\n",test);
+	// strcpy(test,TranslateMessage());	
+	// printf("%s\n",test);
+	// strcpy(test,TranslateMessage());	
+	// printf("%s\n",test);
 
+	DetermineCommandtype();
 	return 0;
 }
