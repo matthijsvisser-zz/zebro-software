@@ -34,7 +34,7 @@ void print_list(node_t *head) {
     	printf("%d\t", listNumber);
         for(item = 0; item < DATASIZE; item++){
         	
-        	printf("%d\t",current ->  data[item]);
+        	printf("%d\t",current -> data[item]);
         }  
         printf("\n");
         current = current -> next;
@@ -138,6 +138,7 @@ int* popListByNumber(node_t ** head, int indexNumber){
 	for (int item = 0; item < DATASIZE; ++item){
     	returnArray[item] = temp_node -> data[item];
 	}
+
 	current -> next = temp_node -> next;
 	free(temp_node);
 
@@ -160,23 +161,25 @@ int* popListByValue(node_t ** head, int value, int sizeOfList){
 	static int returnArray[DATASIZE];
 	node_t *current = *head,*temp_node = NULL;
 	
+	if (current -> data[FIRSTDATAITEM] == value){
+		return pop(head);
+	}
 	// printf("Item %d, data [%d]\n", 0, current -> data[FIRSTDATAITEM]);
 
 	for (int item = 1; item < sizeOfList; ++item){
 		temp_node = current -> next;
-		// printf("Item %d, data [%d]\n", item, temp_node -> data[FIRSTDATAITEM]);
+		printf("Item %d, data [%d]\n", item, temp_node -> data[FIRSTDATAITEM]);
 		if(temp_node -> data[FIRSTDATAITEM] == value){
-			for (int item = 0; item < DATASIZE; ++item){
-    			returnArray[item] = temp_node -> data[item];
+			for (int itemb = 0; itemb < DATASIZE; ++itemb){
+    			returnArray[itemb] = temp_node -> data[itemb];
 			}
+			current -> next = temp_node -> next;
+			free(temp_node);
+
+			return returnArray;
 		}
 		current = current -> next;
 	}
-	
-	current -> next = temp_node -> next;
-	free(temp_node);
-
-	return returnArray;
 }
 
 /**
@@ -201,6 +204,8 @@ int main(void){
 
 	int datb[DATASIZE];
 	
+	system("clear");
+
 	for (int i = 0; i < DATASIZE; ++i){
 		datb[i]=i+5;
 	}
@@ -218,46 +223,52 @@ int main(void){
 	}
 	append(head,datb);
 
-	print_list(head);
+	// print_list(head);
 
-	printf("POP\n");
-	printf("POP't information\n");
+/*	##################################### */
+
+	// printf("POP\n");
+	// printf("POP't information\n");
 	int* value = pop(&head);
-	if (pop != NULL){
-		for (int i = 0; i < DATASIZE; ++i){
-			printf("%d\t",*value);
-			*value++;
-		}
-	}
-	printf("\n");
+	// if (pop != NULL){
+	// 	for (int i = 0; i < DATASIZE; ++i){
+	// 		// printf("%d\t",*value);
+	// 		*value++;
+	// 	}
+	// }
+	// printf("\n");
 
-	printf("\n");
-	print_list(head);
+	// printf("\n");
+	// print_list(head);
 
-	for (int i = 0; i < DATASIZE; ++i){
-		datb[i]=i+15;
-	}
+/*	##################################### */
 
-	append(head,datb);
+	// for (int i = 0; i < DATASIZE; ++i){
+	// 	datb[i]=i+15;
+	// }
 
-	for (int i = 0; i < DATASIZE; ++i){
-		datb[i]=i+18;
-	}
-	append(head,datb);
-	printf("size of list:%d\n",sizeOfList(head));
+	// append(head,datb);
 
-	print_list(head);
+	// for (int i = 0; i < DATASIZE; ++i){
+	// 	datb[i]=i+18;
+	// }
+	// append(head,datb);
+	// printf("size of list:%d\n",sizeOfList(head));
 
-	printf("POP't information\n");
-	value = popListByNumber(&head, 2);
-	if (pop != NULL){
-		for (int i = 0; i < DATASIZE; ++i){
-			printf("%d\t",*value);
-			*value++;
-		}
-	}
-	printf("\n");
-	print_list(head);
+	// print_list(head);
+
+	// printf("POP't information\n");
+	// value = popListByNumber(&head, 0);
+	// if (pop != NULL){
+	// 	for (int i = 0; i < DATASIZE; ++i){
+	// 		printf("%d\t",*value);
+	// 		*value++;
+	// 	}
+	// }
+	// printf("\n");
+	// print_list(head);
+
+/*	##################################### */
 
 	for (int i = 0; i < DATASIZE; ++i){
 		datb[i]=i+75;
@@ -269,12 +280,12 @@ int main(void){
 		datb[i]=i+98;
 	}
 	append(head,datb);
-	printf("size of list:%d\n",sizeOfList(head));
+	// printf("size of list:%d\n",sizeOfList(head));
 
 	print_list(head);
 
 	printf("POP't information\n");
-	value = popListByValue(&head, 75, sizeOfList(head));
+	value = popListByValue(&head, 8, sizeOfList(head));
 	if (pop != NULL){
 		for (int i = 0; i < DATASIZE; ++i){
 			printf("%d\t",*value);
