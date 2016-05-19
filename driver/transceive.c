@@ -6,9 +6,7 @@
  *	contact Matthijs.Visser@hva.nl
 **/
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include "transceive.h"
 
 /**
  * Determines the meaning of the message
@@ -53,7 +51,7 @@ void DetermineCommandtype (){
  * @return	message pointer to the translated message
  */
 char * TranslateMessage (void){
-	char value [2];
+	char value [64];
 	static char message[64];
 
 	memset(message, '\0', strlen(message));
@@ -61,7 +59,7 @@ char * TranslateMessage (void){
 	value[0] = getchar();
 	//value[0] = uart_getchar(stdin);
 	strcpy(message, value);
-	
+	value[0] = getchar();
 	while (value[0] != '\n'){
 		value[0] = getchar();
 		//value[0] = uart_getchar(stdin);	
@@ -71,15 +69,16 @@ char * TranslateMessage (void){
 }
 
 int main (void){
-	system("clear");
+	// system("clear");
 	char test[64];
 	// strcpy(test,TranslateMessage());
 	// printf("%s\n",test);
 	// strcpy(test,TranslateMessage());	
 	// printf("%s\n",test);
-	// strcpy(test,TranslateMessage());	
-	// printf("%s\n",test);
-
-	DetermineCommandtype();
+	while(1){
+		strcpy(test,TranslateMessage());	
+		printf("%s\n",test);
+	}
+	// DetermineCommandtype();
 	return 0;
 }
