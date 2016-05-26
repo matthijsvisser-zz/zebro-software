@@ -6,8 +6,10 @@
  *	contact Matthijs.Visser@hva.nl
 **/
 
-#include "transceive.h"
-
+#include "main.h"
+//#include "uart.h"
+char value[64];
+char message[64];
 /**
  * Determines the meaning of the message
  * @param  	value	received value
@@ -19,13 +21,13 @@ void DetermineCommandtype (){
 
 	memset(command, '\0', strlen(command));
 
-	value[0] = getchar();
-	//value[0] = uart_getchar(stdin);
+	//value[0] = getchar();
+	value[0] = uart_getchar(stdin);
 	strcpy(command, value);
 
 	while (value[0] != ':'){
-		value[0] = getchar();
-		//value[0] = uart_getchar(stdin);
+		//value[0] = getchar();
+		value[0] = uart_getchar(stdin);
 		if (value[0] != ':'){strcat(command, value);};
 	}
 
@@ -50,24 +52,25 @@ void DetermineCommandtype (){
  * @param  	value	received value
  * @return	message pointer to the translated message
  */
-char * TranslateMessage (void){
-	char value [64];
-	static char message[64];
+void  TranslateMessage (void){
 
 	memset(message, '\0', strlen(message));
 
-	value[0] = getchar();
-	//value[0] = uart_getchar(stdin);
+	value[0] = uart_getchar(stdin);
 	strcpy(message, value);
-	//value[0] = getchar();
-	while (value[0] != '\n'){
-		value[0] = getchar();
-		//value[0] = uart_getchar(stdin);	
+	while (value[0] != '\r'){
+		value[0] = uart_getchar(stdin);	
 		strcat(message, value);
 	}
-	return message;
+
+	printf("message: %s", message);
+
+	//printf("\n");
+
+	//return *message;
 }
 
+/*
 int main (void){
 	// system("clear");
 	char test[64];
@@ -76,10 +79,10 @@ int main (void){
 	// strcpy(test,TranslateMessage());	
 	// printf("%s\n",test);
 	while(1){
-		printf("%c\n", getchar());
-		// strcpy(test,TranslateMessage());	
-		// printf("%s\n",test);
+		strcpy(test,TranslateMessage());	
+		printf("%s\n",test);
 	}
 	// DetermineCommandtype();
 	return 0;
 }
+*/
