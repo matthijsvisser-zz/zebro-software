@@ -50,6 +50,7 @@
  */
 uint16_t uart_getc(USART_data_t *uart)
 {
+	
   uint8_t data;
 
   if ( ! USART_RXBufferData_Available(uart) ) {
@@ -59,6 +60,13 @@ uint16_t uart_getc(USART_data_t *uart)
   data = USART_RXBuffer_GetByte(uart);
 
   return (data & 0x00FF);
+
+
+/*
+while ( !( USARTC1.STATUS & USART_TXCIF_bm) );
+
+return USARTC1.DATA;
+*/
 }
 
 /*! \brief Write a byte to the circular transmit buffer

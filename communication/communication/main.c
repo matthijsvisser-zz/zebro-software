@@ -17,52 +17,25 @@
 void init_uart(USART_data_t *uart, USART_t *usart, uint32_t f_cpu, uint32_t baud, uint8_t clk2x);
 
 
-
-
-int main(void)
-{
-	SystemClock_init();
-	init_uart(&uartC0, &USARTC0, F_CPU, C0_BAUD, C0_CLK2X);
-	init_uart(&uartC1, &USARTC1, F_CPU, C1_BAUD, C1_CLK2X);
+int main(void){
+	
+	SystemClock_init();										// 32 MHz clock
+	// Green = RX, Orange = TX
+	init_uart(&uartC0, &USARTC0, F_CPU, C0_BAUD, C0_CLK2X); // Module communication		C2 RX C3 TX
+	init_uart(&uartC1, &USARTC1, F_CPU, C1_BAUD, C1_CLK2X); // Debug communication		C6 RX C7 TX
 
 	PMIC.CTRL = PMIC_LOLVLEN_bm;
 	sei();
 	
 	while(1) {
-		uart_puts(&uartC0, "hoi menno\r\n");
-		_delay_ms(1000);
-		uart_puts(&uartC1, "hoi jur\r\n");
-		_delay_ms(1000);
-
-	}
-	
-	
-	//int frequent;
-
-	//uart_init();
-	//uart_init_c0();
-	//stdout = &mystdout;
-	//stdin  = &mystdin;
-	//char input;
-	//int input;
-	//char test[64];
-	
-	//TCC0.CTRLA = TC_CLKSEL_DIV64_gc; // prescaling 8
-	//TCC0.PER = 0XFFFF; // maximal value
-	
-	//printf("\e[3J");
-	//printf("sbiv 1000\n");
-	//printf("GRWL\n");
-
-
-	//while (1) {
+		uint16_t c;
+		//char test [64];
 		
-		//input = uart_getchar(stdin);
-		//printf("%c",input);
-		//strcpy(test,TranslateMessage());
-		//printf("mennioty - %s\n",test);
-		//TranslateMessage(input);
-		//TranslateMessage();
-		//debug_uart("test");
-	//}
+		uart_puts(&uartC0, "gnid\r\n");
+		_delay_ms(5000);
+		uart_puts(&uartC1, "Main:\r\n");
+		uart_puts(&uartC1, TranslateMessage());
+		// c = uart_getc(&uartC0);
+		// uart_putc(&uartC1, c);
+	}
 }

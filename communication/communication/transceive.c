@@ -7,9 +7,17 @@
 **/
 
 #include "main.h"
-//#include "uart.h"
+#include "uart.h"
 char value[64];
 char message[64];
+
+extern USART_data_t uartC0;
+extern USART_data_t uartC1;
+
+
+
+
+
 /**
  * Determines the meaning of the message
  * @param  	value	received value
@@ -52,22 +60,22 @@ void DetermineCommandtype (){
  * @param  	value	received value
  * @return	message pointer to the translated message
  */
-void  TranslateMessage (void){
+char * TranslateMessage (void){
 
 	memset(message, '\0', strlen(message));
 
-//	value[0] = uart_getchar(stdin);
+	value[0] = uart_getc(&uartC0);
 	strcpy(message, value);
-	while (value[0] != '\r'){
-//		value[0] = uart_getchar(stdin);	
+	while (value[0] != '\n'){
+		value[0] = uart_getc(&uartC0);	
 		strcat(message, value);
 	}
-
-	printf("message: %s", message);
+	//uart_puts(&uartC1, message);
+	//printf("message: %s", message);
 
 	//printf("\n");
 
-	//return *message;
+	return message;
 }
 
 /*

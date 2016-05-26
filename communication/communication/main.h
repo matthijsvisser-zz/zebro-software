@@ -13,7 +13,9 @@
 #include "clk.h"
 
 
+//void init_uart(USART_data_t *uart, USART_t *usart, uint32_t f_cpu, uint32_t baud, uint8_t clk2x);
 
-void TranslateMessage (void);
+
+char * TranslateMessage (void);
 
 #endif /* MAIN_H_ */

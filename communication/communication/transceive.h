@@ -10,14 +10,17 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
 #include <string.h>
-
-//#include "uart.h"
 
 void DetermineCommandtype ();
 //char * TranslateMessage (void);
-void TranslateMessage (void);
+char * TranslateMessage (void);
 //static char uart_getchar(FILE *stream);
+uint16_t uart_getc(USART_data_t *uart);
+#include "uart.h"
 
 #endif /* MAIN_H_ */
 /**
