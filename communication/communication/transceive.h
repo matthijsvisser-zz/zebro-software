@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "uart.h"
+//#include "uart.h"
 
 void DetermineCommandtype ();
 //char * TranslateMessage (void);

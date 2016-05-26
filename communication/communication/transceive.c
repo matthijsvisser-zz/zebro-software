@@ -22,12 +22,12 @@ void DetermineCommandtype (){
 	memset(command, '\0', strlen(command));
 
 	//value[0] = getchar();
-	value[0] = uart_getchar(stdin);
+//		value[0] = uart_getchar(stdin);
 	strcpy(command, value);
 
 	while (value[0] != ':'){
 		//value[0] = getchar();
-		value[0] = uart_getchar(stdin);
+//		value[0] = uart_getchar(stdin);
 		if (value[0] != ':'){strcat(command, value);};
 	}
 
@@ -56,10 +56,10 @@ void  TranslateMessage (void){
 
 	memset(message, '\0', strlen(message));
 
-	value[0] = uart_getchar(stdin);
+//	value[0] = uart_getchar(stdin);
 	strcpy(message, value);
 	while (value[0] != '\r'){
-		value[0] = uart_getchar(stdin);	
+//		value[0] = uart_getchar(stdin);	
 		strcat(message, value);
 	}
 
