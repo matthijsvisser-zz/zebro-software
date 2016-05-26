@@ -15,6 +15,34 @@ extern USART_data_t uartC0;
 extern USART_data_t uartC1;
 
 /**
+ * Validates the integrity of the received message
+ * @param   *message   Received message
+ * @param   command    Type of command
+ * @return  true/false 
+ */
+void ValidateMessage (char *message, uint8_t command){
+    uint8_t messageLength;
+    messageLength = strlen(message);
+    switch (command) {
+        case 1: // command RRN
+            if (messageLength == RRN_LENGTH){
+                return true;
+            }
+        case 2: // command XX
+            if (messageLength == RRN_LENGTH){
+                return true;
+            }
+        case 3: // command XX
+            if (messageLength == RRN_LENGTH){
+                return true;
+            }
+        default:
+            return false;
+    }
+}
+
+
+/**
  * Ranging result notification flag
  * @param  	
  * @param	
@@ -85,27 +113,5 @@ char * TranslateMessage (void){
 		value[0] = uart_getc(&uartC0);	
 		strcat(message, value);
 	}
-	//uart_puts(&uartC1, message);
-	//printf("message: %s", message);
-
-	//printf("\n");
-
 	return message;
 }
-
-/*
-int main (void){
-	// system("clear");
-	char test[64];
-	// strcpy(test,TranslateMessage());
-	// printf("%s\n",test);
-	// strcpy(test,TranslateMessage());	
-	// printf("%s\n",test);
-	while(1){
-		strcpy(test,TranslateMessage());	
-		printf("%s\n",test);
-	}
-	// DetermineCommandtype();
-	return 0;
-}
-*/

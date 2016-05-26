@@ -15,11 +15,14 @@
 #include <util/delay.h>
 #include <string.h>
 
+/* Command lengths */
+#define RRN_LENGTH 00
+
 void DetermineCommandtype ();
-//char * TranslateMessage (void);
 char * TranslateMessage (void);
-//static char uart_getchar(FILE *stream);
+void ValidateMessage (char *message, uint8_t command);
 uint16_t uart_getc(USART_data_t *uart);
+
 #include "uart.h"
 
 #endif /* MAIN_H_ */
