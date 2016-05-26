@@ -16,6 +16,7 @@
 
 void init_uart(USART_data_t *uart, USART_t *usart, uint32_t f_cpu, uint32_t baud, uint8_t clk2x);
 
+#define UPDATEINTERVAL 1000
 
 int main(void){
 	
@@ -27,15 +28,29 @@ int main(void){
 	PMIC.CTRL = PMIC_LOLVLEN_bm;
 	sei();
 	
+
+	
 	while(1) {
-		uint16_t c;
-		//char test [64];
-		
+		_delay_ms(UPDATEINTERVAL);
+//		uart_puts(&uartC1, "\e[1;1H\e[2J");
+/*		
+		uart_puts(&uartC1, "GNID:\r\n");
 		uart_puts(&uartC0, "gnid\r\n");
-		_delay_ms(5000);
-		uart_puts(&uartC1, "Main:\r\n");
 		uart_puts(&uartC1, TranslateMessage());
-		// c = uart_getc(&uartC0);
-		// uart_putc(&uartC1, c);
+*/		
+		uart_puts(&uartC1, "GDAT:\r\n");
+		uart_puts(&uartC0, "gdat\r\n");
+		uart_puts(&uartC1, TranslateMessage());
+
+//		uart_puts(&uartC1, "GRWL:\r\n");
+//		uart_puts(&uartC0, "grwl\r\n");
+//		uart_puts(&uartC1, TranslateMessage());
+/*		
+		uart_puts(&uartC1, "SBIV 1000:\r\n");
+		uart_puts(&uartC0, "sbiv 1000\r\n");
+		uart_puts(&uartC1, TranslateMessage());
+*/		
+//		DetermineCommandtype ();
+		
 	}
 }

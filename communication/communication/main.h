@@ -17,5 +17,6 @@
 
 
 char * TranslateMessage (void);
+void DetermineCommandtype ();
 
 #endif /* MAIN_H_ */

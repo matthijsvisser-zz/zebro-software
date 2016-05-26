@@ -14,8 +14,14 @@ char message[64];
 extern USART_data_t uartC0;
 extern USART_data_t uartC1;
 
-
-
+/**
+ * Ranging result notification flag
+ * @param  	
+ * @param	
+ */
+void RRN (){
+	uart_puts(&uartC1, "functieeee\r\n");
+}
 
 
 /**
@@ -24,34 +30,43 @@ extern USART_data_t uartC1;
  * @param	DetermineCommandtype
  */
 void DetermineCommandtype (){
-	char value[16];
-	char command[16];
-
+	char value[16], command[16];
+	
 	memset(command, '\0', strlen(command));
 
-	//value[0] = getchar();
-//		value[0] = uart_getchar(stdin);
+	value[0] = uart_getc(&uartC0);
 	strcpy(command, value);
+	uart_puts(&uartC1, value);
+	
 
 	while (value[0] != ':'){
-		//value[0] = getchar();
-//		value[0] = uart_getchar(stdin);
-		if (value[0] != ':'){strcat(command, value);};
+		value[0] = uart_getc(&uartC0);
+		//if (value[0] != ':'){
+			strcat(command, value);
+		//}
 	}
+	uart_puts(&uartC1, command);
+/*
+
+	uart_getc(&uartC0); // skip ':'
+	
+	uart_puts(&uartC1, command);
+	uart_puts(&uartC1, "\r\n");
 
 	if (strcmp(command, 	 "RRN") == 0){ // Data Notification Message
-		printf("RRN\n");
+		RRN();
 	}else if(strcmp(command, "DNO") == 0){ // Node ID Notification Message
-		printf("DNO\n");
+		//printf("DNO\n");
 	}else if(strcmp(command, "NIN") == 0){ // Ranging Result Notification Message
-		printf("NIN\n");
+		//printf("NIN\n");
 	}else if(strcmp(command, "SDAT") == 0){// SDAT Notification Messages
-		printf("SDAT\n");
+		//printf("SDAT\n");
 	}else if(strcmp(command, "AIR") == 0){ // AIR Notification Message
-		printf("AIR\n");
+		//printf("AIR\n");
 	}else{
-		printf("else\n");
+		//printf("else\n");
 	}
+*/
 }
 
 /**
