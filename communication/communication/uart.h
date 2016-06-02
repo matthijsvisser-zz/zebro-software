@@ -74,7 +74,7 @@ USART_data_t uartC0;
  */
 ISR(USARTC0_RXC_vect)
 {
-  USART_RXComplete(&uartC0.usart);
+  USART_RXComplete(&uartC0);
 }
 
 /*!
@@ -83,7 +83,7 @@ ISR(USARTC0_RXC_vect)
  */
 ISR(USARTC0_DRE_vect)
 {
-  USART_DataRegEmpty(&uartC0.usart);
+  USART_DataRegEmpty(&uartC0);
 }
 #endif
 

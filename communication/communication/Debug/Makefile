@@ -41,6 +41,7 @@ C_SRCS +=  \
 ../main.c \
 ../transceive.c \
 ../uart.c \
+../uart_m.c \
 ../usart_driver.c
 
 
@@ -55,6 +56,7 @@ clk.o \
 main.o \
 transceive.o \
 uart.o \
+uart_m.o \
 usart_driver.o
 
 OBJS_AS_ARGS +=  \
@@ -62,6 +64,7 @@ clk.o \
 main.o \
 transceive.o \
 uart.o \
+uart_m.o \
 usart_driver.o
 
 C_DEPS +=  \
@@ -69,6 +72,7 @@ clk.d \
 main.d \
 transceive.d \
 uart.d \
+uart_m.d \
 usart_driver.d
 
 C_DEPS_AS_ARGS +=  \
@@ -76,6 +80,7 @@ clk.d \
 main.d \
 transceive.d \
 uart.d \
+uart_m.d \
 usart_driver.d
 
 OUTPUT_FILE_PATH +=communication.elf
@@ -92,6 +97,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

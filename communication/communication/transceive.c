@@ -8,6 +8,8 @@
 
 #include "main.h"
 #include "uart.h"
+#include "transceive.h"
+
 char value[64];
 char message[64];
 
@@ -20,7 +22,7 @@ extern USART_data_t uartC1;
  * @param   command    Type of command
  * @return  true/false 
  */
-void ValidateMessage (char *message, uint8_t command){
+uint8_t ValidateMessage (char *message, uint8_t command){
     uint8_t messageLength;
     messageLength = strlen(message);
     switch (command) {

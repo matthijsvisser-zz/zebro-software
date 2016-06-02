@@ -137,6 +137,12 @@
     <Compile Include="uart.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="uart_m.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="uart_m.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="usart_driver.c">
       <SubType>compile</SubType>
     </Compile>

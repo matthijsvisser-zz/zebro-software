@@ -12,6 +12,8 @@
 #define C0_BAUD          115200    //!< baud rate
 #define C0_CLK2X         0         //!< no double clock speed
 
+#define CLEARTERM "\e[1;1H\e[2J"
+
 #include "uart.h"
 
 void init_uart(USART_data_t *uart, USART_t *usart, uint32_t f_cpu, uint32_t baud, uint8_t clk2x);
@@ -32,15 +34,13 @@ int main(void){
 	
 	while(1) {
 		_delay_ms(UPDATEINTERVAL);
-//		uart_puts(&uartC1, "\e[1;1H\e[2J");
+		uart_puts(&uartC1, "1");
+		uart_puts(&uartC0, "0");
 /*		
 		uart_puts(&uartC1, "GNID:\r\n");
 		uart_puts(&uartC0, "gnid\r\n");
 		uart_puts(&uartC1, TranslateMessage());
 */		
-		uart_puts(&uartC1, "GDAT:\r\n");
-		uart_puts(&uartC0, "gdat\r\n");
-		uart_puts(&uartC1, TranslateMessage());
 
 //		uart_puts(&uartC1, "GRWL:\r\n");
 //		uart_puts(&uartC0, "grwl\r\n");
