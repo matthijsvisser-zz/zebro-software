@@ -24,7 +24,7 @@ transceive.d transceive.o: .././transceive.c .././main.h \
  .././uart.h .././avr_compiler.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdbool.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
- .././usart_driver.h
+ .././usart_driver.h .././uart_m.h
 
 .././main.h:
 
@@ -83,3 +83,5 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\pgmspace.h:
 
 .././usart_driver.h:
+
+.././uart_m.h:

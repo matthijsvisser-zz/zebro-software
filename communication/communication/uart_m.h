@@ -12,5 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 
+void DebugPrint (char *debugData);
+void Command (char *command);
 
 #endif /* UART_M_H_ */ 

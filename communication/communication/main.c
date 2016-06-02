@@ -34,8 +34,9 @@ int main(void){
 	
 	while(1) {
 		_delay_ms(UPDATEINTERVAL);
-		uart_puts(&uartC1, "1");
-		uart_puts(&uartC0, "0");
+
+		DebugPrint("test");
+		Command(GNID);
 /*		
 		uart_puts(&uartC1, "GNID:\r\n");
 		uart_puts(&uartC0, "gnid\r\n");
