@@ -10,9 +10,6 @@
 #include "uart.h"
 #include "transceive.h"
 
-char value[64];
-char message[64];
-
 extern USART_data_t uartC0;
 extern USART_data_t uartC1;
 
@@ -106,6 +103,7 @@ void DetermineCommandtype (){
  * @return	message pointer to the translated message
  */
 char * TranslateMessage (void){
+	char value[128],message[128];
 
 	memset(message, '\0', strlen(message));
 

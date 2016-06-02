@@ -53,9 +53,9 @@ uint16_t uart_getc(USART_data_t *uart)
 	
   uint8_t data;
 
-/*  if ( ! USART_RXBufferData_Available(uart) ) {
+  if ( ! USART_RXBufferData_Available(uart) ) {
     return UART_NO_DATA;
-  }*/
+}
 while ( !( USARTC1.STATUS & USART_TXCIF_bm) );
   data = USART_RXBuffer_GetByte(uart);
 

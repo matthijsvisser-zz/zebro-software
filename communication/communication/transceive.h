@@ -19,13 +19,39 @@
 
 /* Command lengths */
 #define RRN_LENGTH	43
+#define ID_LENGTH	13
 #define TYPE_RRN	1
 
-/* Swarm Bee API commands */
-#define GNID		"gnid\r\n"
-#define GDAT		"gdat\r\n"
-#define GRWL		"grwl\r\n"
-#define SBIV1000	"SBIV 1000\r\n"
+/* Begin of Swarm Bee API command list*/
+// Setup commands
+#define SNID		"snid\r\n"			// Sets the Node ID of swarm node
+#define GNID		"gnid\r\n"			// Get Node ID of the node connected to host
+#define SSET		"sset\r\n"			// Save SETtings; saves all settings including Node ID permanently to EEPROM
+#define GSET		"gset\r\n"			// Get current SETtings (node configuration)
+
+#define GFWV		"gfwv\r\n"			// Get the FirmWare Version of the swarm Node
+
+// Ranging commands
+#define RATO		"rato\r\n"			// RAnge TO; initiates an elementary ranging cycle to another swarm node
+#define BRAR		"brar\r\n"			// Broadcast RAnging Results; enabled (or disabled) the broadcasting of 
+										// ranging results after each successful ranging operation.
+#define SROB		"srob\r\n"			// Selects Ranging Operation Blinks; sets which classes of devices the node will initiate a
+										// ranging operation with upon reception of a node blink ID packet.
+#define ERRN		"errn\r\n"			// Enables (or disables) Ranging Result Notification
+#define GRWL		"grwl\r\n"			// Get Ranging White List.
+
+// Data communication commands
+#define EDAN		"edan\r\n"			// Enables and disables DAta Notification
+#define SDAT		"sdat\r\n"			// Sends DATa to node ID
+#define GDAT		"gdat\r\n"			// Gets received DATa
+#define BDAT		"bdat\r\n"			// Broadcasts DATa
+
+#define SBIV500		"SBIV 500\r\n"
+#define SBIV100		"SBIV 100\r\n"
+
+#define EBID		"ebid\r\n"			//Enable Broadcast ID. Enables and disables broadcast of Node ID blink packets
+#define EIDN		"eidn\r\n"			// Enables and disables Node ID Broadcast Notification
+/* End of Swarm Bee API command list*/
 
 void DetermineCommandtype ();
 char * TranslateMessage (void);

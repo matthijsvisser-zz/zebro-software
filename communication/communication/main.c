@@ -30,28 +30,19 @@ int main(void){
 	PMIC.CTRL = PMIC_LOLVLEN_bm;
 	sei();
 	
-
+	char* message;
 	
 	while(1) {
 		_delay_ms(UPDATEINTERVAL);
 
-		DebugPrint("test");
-		Command(GNID);
-/*		
-		uart_puts(&uartC1, "GNID:\r\n");
-		uart_puts(&uartC0, "gnid\r\n");
-		uart_puts(&uartC1, TranslateMessage());
-*/		
-
-//		uart_puts(&uartC1, "GRWL:\r\n");
-//		uart_puts(&uartC0, "grwl\r\n");
-//		uart_puts(&uartC1, TranslateMessage());
-/*		
-		uart_puts(&uartC1, "SBIV 1000:\r\n");
-		uart_puts(&uartC0, "sbiv 1000\r\n");
-		uart_puts(&uartC1, TranslateMessage());
-*/		
-//		DetermineCommandtype ();
+		DebugPrint("\r\nmessage:\r\n");
+//		Command(GFWV);
+		DebugPrint(TranslateMessage());
+/*		message = TranslateMessage();
 		
+		if (ValidateMessage(message,TYPE_RRN) == true){
+			DebugPrint("My anaconda");
+		}
+*/
 	}
 }
