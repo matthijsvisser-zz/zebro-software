@@ -22,7 +22,7 @@
 #define EOS			'\0'				// End of string
 
 /* Command lengths */
-#define RRN_LENGTH	43
+#define RRN_LENGTH	39
 #define ID_LENGTH	13
 #define TYPE_RRN	1
 
@@ -50,12 +50,19 @@
 #define GDAT		"gdat\r\n"			// Gets received DATa
 #define BDAT		"bdat\r\n"			// Broadcasts DATa
 
+#define SBIV1000	"SBIV 1000\r\n"
 #define SBIV500		"SBIV 500\r\n"
 #define SBIV100		"SBIV 100\r\n"
 
-#define EBID		"ebid\r\n"			//Enable Broadcast ID. Enables and disables broadcast of Node ID blink packets
+#define EBID		"ebid\r\n"			// Enable Broadcast ID. Enables and disables broadcast of Node ID blink packets
 #define EIDN		"eidn\r\n"			// Enables and disables Node ID Broadcast Notification
+
+// Swarm radio node identification
+#define NCFG0		"NCFG 0\r\n"		// Disable all RRN device parameter messages
+
 /* End of Swarm Bee API command list*/
+
+#define RRN			"*RRN"				// Ranging result notification
 
 void DetermineCommandtype ();
 char * TranslateMessage (void);

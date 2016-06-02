@@ -18,7 +18,7 @@
 
 void init_uart(USART_data_t *uart, USART_t *usart, uint32_t f_cpu, uint32_t baud, uint8_t clk2x);
 
-#define UPDATEINTERVAL 1000
+#define UPDATEINTERVAL 1000			// in ms
 
 int main(void){
 	
@@ -30,18 +30,24 @@ int main(void){
 	PMIC.CTRL = PMIC_LOLVLEN_bm;
 	sei();
 	
+	_delay_ms(UPDATEINTERVAL);
+	Command(NCFG0);
+	Command(SBIV500);
+	
 	
 	while(1) {
 		char message[128];
+		
+		memset(message, EOS, strlen(message));
 		_delay_ms(UPDATEINTERVAL);
-
+		DebugPrint(CLEARTERM);
 		DebugPrint("message:\r\n");
 		//DebugPrint(TranslateMessage());
 		strcpy(message,TranslateMessage());
 		
 //		DebugPrint(message);
 		if (ValidateMessage(message,TYPE_RRN) == true){
-			DebugPrint("My anaconda do\n");
+			DetermineCommandtype(message);
 		}
 
 	}

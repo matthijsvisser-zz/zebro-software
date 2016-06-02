@@ -22,12 +22,7 @@ extern USART_data_t uartC1;
 uint8_t ValidateMessage (char *message, uint8_t command){
     uint8_t messageLength;
     messageLength = strlen(message) - 2;
-		
-	char number[10];
-	itoa(messageLength, number, 10);
-	DebugPrint("Message length:\r\n");
-	DebugPrint(number);
-	DebugPrint("\r\n");
+
     switch (command) {
         case 1: // command RRN
             if (messageLength == RRN_LENGTH){
@@ -52,7 +47,7 @@ uint8_t ValidateMessage (char *message, uint8_t command){
  * @param  	
  * @param	
  */
-void RRN (){
+void RRN_function (char *message){
 	uart_puts(&uartC1, "functieeee\r\n");
 }
 
@@ -62,44 +57,43 @@ void RRN (){
  * @param  	value	received value
  * @param	DetermineCommandtype
  */
-void DetermineCommandtype (){
-	char value[16], command[16];
+void DetermineCommandtype (char *message){
+	char *messagePointer;
+	char command[5];
+	uint8_t count = 0;
 	
-	memset(command, '\0', strlen(command));
-
-	value[0] = uart_getc(&uartC0);
-	strcpy(command, value);
-	uart_puts(&uartC1, value);
+	memset(command, EOS, strlen(command));	
+	messagePointer = message;
 	
-
-	while (value[0] != ':'){
-		value[0] = uart_getc(&uartC0);
-		//if (value[0] != ':'){
-			strcat(command, value);
-		//}
+	DebugPrint("Determing message\r\n");
+	DebugPrint(message);
+	DebugPrint("\r\n");
+	
+	while(*messagePointer != ':'){
+		if(*messagePointer == ':'){ break;};
+		//uart_putc(&uartC1, *messagePointer);
+		command[count] = *messagePointer;
+		*messagePointer++;
+		count++;
 	}
-	uart_puts(&uartC1, command);
-/*
+	DebugPrint("Command:\r\n");
+	DebugPrint(command);
+	char test[] = {'*','R','R','N', '\0'};
 
-	uart_getc(&uartC0); // skip ':'
-	
-	uart_puts(&uartC1, command);
-	uart_puts(&uartC1, "\r\n");
-
-	if (strcmp(command, 	 "RRN") == 0){ // Data Notification Message
-		RRN();
-	}else if(strcmp(command, "DNO") == 0){ // Node ID Notification Message
-		//printf("DNO\n");
-	}else if(strcmp(command, "NIN") == 0){ // Ranging Result Notification Message
+	if		(strcmp(command,	"*RRN") == 0){	// Data Notification Message
+		RRN_function(message);
+	}else if(strcmp(command, "DNO") == 0){	// Node ID Notification Message
+		
+	}else if(strcmp(command, "NIN") == 0){	// Ranging Result Notification Message
 		//printf("NIN\n");
-	}else if(strcmp(command, "SDAT") == 0){// SDAT Notification Messages
+	}else if(strcmp(command, "SDAT") == 0){	// SDAT Notification Messages
 		//printf("SDAT\n");
-	}else if(strcmp(command, "AIR") == 0){ // AIR Notification Message
+	}else if(strcmp(command, "AIR") == 0){	// AIR Notification Message
 		//printf("AIR\n");
 	}else{
-		//printf("else\n");
+		DebugPrint("No command\r\n");
 	}
-*/
+
 }
 
 char message[128];
@@ -120,9 +114,10 @@ char * TranslateMessage (void){
 	strcpy(message, value);
 	while (value[0] != CR){
 		if (value[0] != CR){	
-			value[0] = uart_getc(&uartC0);
+			
 			strcat(message, value);	
 		}
+		value[0] = uart_getc(&uartC0);
 	}
 	return message;
 }
