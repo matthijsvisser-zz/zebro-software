@@ -21,7 +21,13 @@ extern USART_data_t uartC1;
  */
 uint8_t ValidateMessage (char *message, uint8_t command){
     uint8_t messageLength;
-    messageLength = strlen(message);
+    messageLength = strlen(message) - 2;
+		
+	char number[10];
+	itoa(messageLength, number, 10);
+	DebugPrint("Message length:\r\n");
+	DebugPrint(number);
+	DebugPrint("\r\n");
     switch (command) {
         case 1: // command RRN
             if (messageLength == RRN_LENGTH){
@@ -29,11 +35,11 @@ uint8_t ValidateMessage (char *message, uint8_t command){
             }
         case 2: // command XX
             if (messageLength == RRN_LENGTH){
-                return true;
+                return false;
             }
         case 3: // command XX
             if (messageLength == RRN_LENGTH){
-                return true;
+                return false;
             }
         default:
             return false;
@@ -96,6 +102,8 @@ void DetermineCommandtype (){
 */
 }
 
+char message[128];
+
 /**
  * Translates the received message converts characters
  * to a single string
@@ -103,15 +111,18 @@ void DetermineCommandtype (){
  * @return	message pointer to the translated message
  */
 char * TranslateMessage (void){
-	char value[128],message[128];
+	char value[128];
 
-	memset(message, '\0', strlen(message));
+	memset(message, EOS, strlen(message));
+	memset(value, EOS, strlen(value));
 
 	value[0] = uart_getc(&uartC0);
 	strcpy(message, value);
-	while (value[0] != '\n'){
-		value[0] = uart_getc(&uartC0);	
-		strcat(message, value);
+	while (value[0] != CR){
+		if (value[0] != CR){	
+			value[0] = uart_getc(&uartC0);
+			strcat(message, value);	
+		}
 	}
 	return message;
 }

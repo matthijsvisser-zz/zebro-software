@@ -17,6 +17,10 @@
 
 #include "uart.h"
 
+#define NL			'\n'				// New line
+#define CR			'\r'				// Carriage return
+#define EOS			'\0'				// End of string
+
 /* Command lengths */
 #define RRN_LENGTH	43
 #define ID_LENGTH	13

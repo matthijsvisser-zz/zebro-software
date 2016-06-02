@@ -30,19 +30,19 @@ int main(void){
 	PMIC.CTRL = PMIC_LOLVLEN_bm;
 	sei();
 	
-	char* message;
 	
 	while(1) {
+		char message[128];
 		_delay_ms(UPDATEINTERVAL);
 
-		DebugPrint("\r\nmessage:\r\n");
-//		Command(GFWV);
-		DebugPrint(TranslateMessage());
-/*		message = TranslateMessage();
+		DebugPrint("message:\r\n");
+		//DebugPrint(TranslateMessage());
+		strcpy(message,TranslateMessage());
 		
+//		DebugPrint(message);
 		if (ValidateMessage(message,TYPE_RRN) == true){
-			DebugPrint("My anaconda");
+			DebugPrint("My anaconda do\n");
 		}
-*/
+
 	}
 }
