@@ -16,6 +16,8 @@
 #include <string.h>
 
 #include "uart.h"
+#include "uart_m.h"
+
 
 #define NL			'\n'				// New line
 #define CR			'\r'				// Carriage return

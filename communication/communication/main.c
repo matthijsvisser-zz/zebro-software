@@ -14,9 +14,17 @@
 
 #define CLEARTERM "\e[1;1H\e[2J"
 
+
 #include "uart.h"
+#include "list.h"
+#include "main.h"
+
+
+
 
 void init_uart(USART_data_t *uart, USART_t *usart, uint32_t f_cpu, uint32_t baud, uint8_t clk2x);
+extern node_t *listHead; // head
+
 
 #define UPDATEINTERVAL 1000			// in ms
 
@@ -33,6 +41,15 @@ int main(void){
 	_delay_ms(UPDATEINTERVAL);
 	Command(NCFG0);
 	Command(SBIV500);
+	
+	char* database [8];
+	char* empty = "empty";
+	
+	for (int i = 0; i < 8; ++i){
+		database[i]= empty;
+	}
+	
+	insert(&listHead,database);
 	
 	
 	while(1) {

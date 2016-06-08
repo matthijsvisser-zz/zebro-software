@@ -38,6 +38,7 @@ SUBDIRS :=
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../clk.c \
+../list.c \
 ../main.c \
 ../transceive.c \
 ../uart.c \
@@ -53,6 +54,7 @@ ASM_SRCS +=
 
 OBJS +=  \
 clk.o \
+list.o \
 main.o \
 transceive.o \
 uart.o \
@@ -61,6 +63,7 @@ usart_driver.o
 
 OBJS_AS_ARGS +=  \
 clk.o \
+list.o \
 main.o \
 transceive.o \
 uart.o \
@@ -69,6 +72,7 @@ usart_driver.o
 
 C_DEPS +=  \
 clk.d \
+list.d \
 main.d \
 transceive.d \
 uart.d \
@@ -77,6 +81,7 @@ usart_driver.d
 
 C_DEPS_AS_ARGS +=  \
 clk.d \
+list.d \
 main.d \
 transceive.d \
 uart.d \
@@ -97,6 +102,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

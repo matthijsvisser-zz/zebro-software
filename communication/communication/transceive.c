@@ -6,12 +6,14 @@
  *	contact Matthijs.Visser@hva.nl
 **/
 
-#include "main.h"
+//#include "main.h"
 #include "uart.h"
 #include "transceive.h"
+#include "list.h"
 
 extern USART_data_t uartC0;
 extern USART_data_t uartC1;
+extern node_t *listHead;
 
 /**
  * Validates the integrity of the received message
@@ -39,6 +41,84 @@ uint8_t ValidateMessage (char *message, uint8_t command){
         default:
             return false;
     }
+}
+
+void fillpopulationlist(char *message){				//*RRN bericht
+	char *messagePointer;
+	char srcid[12], destid[12];
+	int distance[6];
+	uint8_t count, c;
+	c = 0;
+	count = 0;
+
+	memset(srcid, EOS, strlen(srcid));	
+	messagePointer = message;
+	
+	//command(sbiv 1000);						// set broadcast interval
+	//Rx1: *RRN: AA1122334455,1F3CFF322133,0,001843,04,-56
+	
+	*messagePointer++;
+	
+	while(*messagePointer != ','){
+		srcid[count] = *messagePointer;
+		*messagePointer++;
+		count++;
+	}
+	
+	srcid[count] = EOS;
+
+	char* database [8];
+	char* datafield = srcid;
+	
+	database[0] = datafield;
+	
+	for (int i = 1; i < 8; ++i){
+		//*database[i]= *empty;
+		database[i] = "test";
+	}
+	
+	//insert(&listHead,*database);
+	append(listHead,database);
+	
+	print_list(listHead);
+	
+/*	
+	char* database [8];
+	char* empty = "empty";
+	
+	for (int i = 0; i < 8; ++i){
+		database[i]= empty;
+	}
+	
+	insert(&listHead,database);
+*/
+	
+	
+	//DebugPrint("\r\n");
+	//DebugPrint(srcid);
+	//DebugPrint("\r\n");
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//DebugPrint("destid\r\n");
+	//DebugPrint("distance\r\n");
+	
+	//if(Srcid =! myid){
+		//Populationlist: nodeid = srcid 
+		//Populationlist: longrange = distance
+	//}
+
+	//if(destid =! myid){
+		//Populationlist: nodeid = destid 
+		//Populationlist: longrange = distance	
+	//}		
 }
 
 
@@ -81,7 +161,8 @@ void DetermineCommandtype (char *message){
 	*messagePointer++;
 
 	if		(strcmp(command, "*RRN") == 0){	// Data Notification Message
-		RRN_function(messagePointer);
+		//RRN_function(messagePointer);
+		fillpopulationlist(messagePointer);
 	}else if(strcmp(command, "DNO")  == 0){	// Node ID Notification Message
 		
 	}else if(strcmp(command, "NIN")  == 0){	// Ranging Result Notification Message
