@@ -17,11 +17,6 @@ extern USART_data_t uartC1;
  * @param   value		Temporarily string value to add a cariage return and new line feed
  */
 void DebugPrint (char *debugData){
-/*	char value[64];
-	strcpy(value, debugData);
-	strcat(value, "\r\n");
-    uart_puts(&uartC1, value);
-	*/
 	uart_puts(&uartC1, debugData);
 }
 

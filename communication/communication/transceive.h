@@ -26,6 +26,9 @@
 #define ID_LENGTH	13
 #define TYPE_RRN	1
 
+#define COMMAND_END		':'
+#define COMMAND_BEGIN	'*'
+
 /* Begin of Swarm Bee API command list*/
 // Setup commands
 #define SNID		"snid\r\n"			// Sets the Node ID of swarm node

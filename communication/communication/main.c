@@ -41,13 +41,14 @@ int main(void){
 		memset(message, EOS, strlen(message));
 		_delay_ms(UPDATEINTERVAL);
 		DebugPrint(CLEARTERM);
-		DebugPrint("message:\r\n");
 		//DebugPrint(TranslateMessage());
 		strcpy(message,TranslateMessage());
 		
 //		DebugPrint(message);
 		if (ValidateMessage(message,TYPE_RRN) == true){
 			DetermineCommandtype(message);
+		}else{
+			DebugPrint("Not valid");
 		}
 
 	}

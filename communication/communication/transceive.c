@@ -48,7 +48,8 @@ uint8_t ValidateMessage (char *message, uint8_t command){
  * @param	
  */
 void RRN_function (char *message){
-	uart_puts(&uartC1, "functieeee\r\n");
+	uart_puts(&uartC1, "\r\nfunctie\r\n");
+	DebugPrint(message);
 }
 
 
@@ -59,44 +60,42 @@ void RRN_function (char *message){
  */
 void DetermineCommandtype (char *message){
 	char *messagePointer;
-	char command[5];
+	char command[4];
 	uint8_t count = 0;
 	
 	memset(command, EOS, strlen(command));	
 	messagePointer = message;
 	
-	DebugPrint("Determing message\r\n");
 	DebugPrint(message);
-	DebugPrint("\r\n");
+
+	*messagePointer++;
 	
-	while(*messagePointer != ':'){
-		if(*messagePointer == ':'){ break;};
-		//uart_putc(&uartC1, *messagePointer);
-		command[count] = *messagePointer;
+	while(*messagePointer != COMMAND_END){
 		*messagePointer++;
+		if(*messagePointer == ( COMMAND_END)){ break;}		
+		command[count] = *messagePointer;		
 		count++;
 	}
-	DebugPrint("Command:\r\n");
-	DebugPrint(command);
-	char test[] = {'*','R','R','N', '\0'};
+	command[count] = EOS;
+	
+	*messagePointer++;
 
-	if		(strcmp(command,	"*RRN") == 0){	// Data Notification Message
-		RRN_function(message);
-	}else if(strcmp(command, "DNO") == 0){	// Node ID Notification Message
+	if		(strcmp(command, "*RRN") == 0){	// Data Notification Message
+		RRN_function(messagePointer);
+	}else if(strcmp(command, "DNO")  == 0){	// Node ID Notification Message
 		
-	}else if(strcmp(command, "NIN") == 0){	// Ranging Result Notification Message
+	}else if(strcmp(command, "NIN")  == 0){	// Ranging Result Notification Message
 		//printf("NIN\n");
 	}else if(strcmp(command, "SDAT") == 0){	// SDAT Notification Messages
 		//printf("SDAT\n");
-	}else if(strcmp(command, "AIR") == 0){	// AIR Notification Message
+	}else if(strcmp(command, "AIR")  == 0){	// AIR Notification Message
 		//printf("AIR\n");
 	}else{
 		DebugPrint("No command\r\n");
 	}
-
 }
 
-char message[128];
+char globalMessage[128];
 
 /**
  * Translates the received message converts characters
@@ -107,17 +106,17 @@ char message[128];
 char * TranslateMessage (void){
 	char value[128];
 
-	memset(message, EOS, strlen(message));
+	memset(globalMessage, EOS, strlen(globalMessage));
 	memset(value, EOS, strlen(value));
 
 	value[0] = uart_getc(&uartC0);
-	strcpy(message, value);
+	strcpy(globalMessage, value);
 	while (value[0] != CR){
 		if (value[0] != CR){	
 			
-			strcat(message, value);	
+			strcat(globalMessage, value);	
 		}
 		value[0] = uart_getc(&uartC0);
 	}
-	return message;
+	return globalMessage;
 }
