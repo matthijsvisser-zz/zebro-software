@@ -8,6 +8,8 @@ list.c
 
 main.c
 
+stackmon.c
+
 transceive.c
 
 uart.c

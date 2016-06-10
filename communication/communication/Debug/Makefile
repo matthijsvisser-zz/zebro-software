@@ -40,6 +40,7 @@ C_SRCS +=  \
 ../clk.c \
 ../list.c \
 ../main.c \
+../stackmon.c \
 ../transceive.c \
 ../uart.c \
 ../uart_m.c \
@@ -56,6 +57,7 @@ OBJS +=  \
 clk.o \
 list.o \
 main.o \
+stackmon.o \
 transceive.o \
 uart.o \
 uart_m.o \
@@ -65,6 +67,7 @@ OBJS_AS_ARGS +=  \
 clk.o \
 list.o \
 main.o \
+stackmon.o \
 transceive.o \
 uart.o \
 uart_m.o \
@@ -74,6 +77,7 @@ C_DEPS +=  \
 clk.d \
 list.d \
 main.d \
+stackmon.d \
 transceive.d \
 uart.d \
 uart_m.d \
@@ -83,6 +87,7 @@ C_DEPS_AS_ARGS +=  \
 clk.d \
 list.d \
 main.d \
+stackmon.d \
 transceive.d \
 uart.d \
 uart_m.d \
@@ -102,6 +107,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

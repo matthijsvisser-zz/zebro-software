@@ -221,6 +221,25 @@ int main(void){
 		datb[i]=i+8;
 	}
 	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
+	append(head,datb);
 
 	// print_list(head);
 
@@ -228,7 +247,7 @@ int main(void){
 
 	// printf("POP\n");
 	// printf("POP't information\n");
-	int* value = pop(&head);
+//	int* value = pop(&head);
 	// if (pop != NULL){
 	// 	for (int i = 0; i < DATASIZE; ++i){
 	// 		// printf("%d\t",*value);
@@ -269,7 +288,7 @@ int main(void){
 
 /*	##################################### */
 
-	for (int i = 0; i < DATASIZE; ++i){
+/*	for (int i = 0; i < DATASIZE; ++i){
 		datb[i]=i+75;
 	}
 
@@ -291,7 +310,7 @@ int main(void){
 			*value++;
 		}
 	}
-
+*/
 	print_list(head);
 
 	return 0;

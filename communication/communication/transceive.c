@@ -72,15 +72,29 @@ void fillpopulationlist(char *message){				//*RRN bericht
 	
 	database[0] = datafield;
 	
-	for (int i = 1; i < 8; ++i){
+	for (int i = 0; i < 8; ++i){
 		//*database[i]= *empty;
-		database[i] = "test";
+		*database[i] = 'a';
 	}
 	
 	//insert(&listHead,*database);
-	append(listHead,database);
+	//append(listHead,database);
 	
 	print_list(listHead);
+	
+	
+/*	
+	for (int i = 0; i < 8; ++i){
+		database[i] = "a";
+	}
+
+	for (int i = 0; i < 3; ++i){
+		_delay_ms(1000);
+		append(listHead,database);			
+	}
+	print_list(listHead);
+*/	
+	
 	
 /*	
 	char* database [8];

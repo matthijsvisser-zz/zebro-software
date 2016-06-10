@@ -18,7 +18,9 @@
 #include "uart.h"
 #include "list.h"
 #include "main.h"
+#include <avr/pgmspace.h>
 
+#include "stackmon.h"
 
 
 
@@ -26,7 +28,7 @@ void init_uart(USART_data_t *uart, USART_t *usart, uint32_t f_cpu, uint32_t baud
 extern node_t *listHead; // head
 
 
-#define UPDATEINTERVAL 1000			// in ms
+#define UPDATEINTERVAL 100			// in ms
 
 int main(void){
 	
@@ -38,22 +40,57 @@ int main(void){
 	PMIC.CTRL = PMIC_LOLVLEN_bm;
 	sei();
 	
+	DebugPrint(CLEARTERM);
+	
+/*	while (1)
+	{
+		DebugPrint("Great\r\n");
+		_delay_ms(UPDATEINTERVAL);
+	}
+	
+
+	DebugPrint("No memory");
+	
+*/	
+	
 	_delay_ms(UPDATEINTERVAL);
 	Command(NCFG0);
 	Command(SBIV500);
 	
-	char* database [8];
-	char* empty = "empty";
+	char* database [DATASIZE];
+	char buffer [12] = "abcdefg";
 	
-	for (int i = 0; i < 8; ++i){
-		database[i]= empty;
+	uint16_t adress;
+	char* print;
+	
+	database[0]= buffer;
+	for (int i = 1; i < DATASIZE; ++i){
+		database[i]= buffer;
+		
+		adress = &database[i];
+		itoa(adress,print,10);
+		DebugPrint(print);
+		DebugPrint("\r\n");
 	}
 	
-	insert(&listHead,database);
+	DebugPrint("\r\n");
+	char* val;
+	const char* databaseSize;
+	databaseSize = *database;
+	size_t len = strlen(databaseSize);
+	itoa(len,val,10);
+	DebugPrint(val);
+	DebugPrint("\r\n");
+
+	for (int i = 1; i < 20; ++i){
+	  _delay_ms(UPDATEINTERVAL);	
+	  insert(&listHead,database);
+	}
+	print_list(listHead);
 	
 	
 	while(1) {
-		char message[128];
+/*		char message[128];
 		
 		memset(message, EOS, strlen(message));
 		_delay_ms(UPDATEINTERVAL);
@@ -61,12 +98,13 @@ int main(void){
 		//DebugPrint(TranslateMessage());
 		strcpy(message,TranslateMessage());
 		
-//		DebugPrint(message);
+		DebugPrint("\r\n");
 		if (ValidateMessage(message,TYPE_RRN) == true){
 			DetermineCommandtype(message);
 		}else{
 			DebugPrint("Not valid");
 		}
-
+*/
 	}
+
 }

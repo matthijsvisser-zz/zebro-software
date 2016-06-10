@@ -167,7 +167,7 @@ char returnArray[DATASIZE];
  * @param  item 	Used for iteration
  * @return returnArray Returns a pointer to the array where the data is stored. 
  */
-char* viewListByNumber(node_t ** head, int indexNumber){
+/*char* viewListByNumber(node_t ** head, int indexNumber){
 	node_t *current = *head, *temp_node = NULL;
 
 	if (indexNumber == 0){
@@ -192,7 +192,7 @@ char* viewListByNumber(node_t ** head, int indexNumber){
 	free(temp_node);
 
 	return returnArray;
-}
+}*/
 
 /**
  * Pops the data array with the given value at the first data array
@@ -251,9 +251,9 @@ int sizeOfList(node_t *head){
 int main(void){
 
 	char* datb[DATASIZE];
-	char var [] = "abcefghijklm";
+	char var [] = "abcefghijklm1231232";
 
-	system("cls");
+	system("clear");
 
 	for (int i = 0; i < DATASIZE; ++i){
 		datb[i]= var;
@@ -277,14 +277,16 @@ int main(void){
 	printf("size of list:%d\n",sizeOfList(head));
 	print_list(head);
 
-	/*char* value = */
-	viewListByNumber(&head,2);
+/*
+	char* value = 
+//	viewListByNumber(&head,2);
 
 	//printf("%s\t",*value);
 
 	for (int i = 0; i < DATASIZE; ++i){
 		printf("%s\t",returnArray[i]);
 	}
+*/
 /*	printf("POP't information\n");
 	value = popListByValue(&head, 8, sizeOfList(head));
 	if (pop != NULL){
