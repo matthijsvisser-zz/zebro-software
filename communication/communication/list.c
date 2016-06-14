@@ -45,11 +45,12 @@ void print_list(node_t *listHead) {
 		DebugPrint(number);
 		DebugPrint("\t");
         for(item = 0; item < DATASIZE; item++){
-			_delay_ms(100);
+			
         	DebugPrint(current -> data[item]);
 			DebugPrint("\t");
         }  
         DebugPrint("\r\n");
+		_delay_ms(100);
         current = current -> next;
         ++listNumber;
     }
@@ -102,36 +103,19 @@ void insert (node_t ** listHead, char* dataInternal [DATASIZE]){
 	node_t * new_node;
 	size_t size = sizeof(node_t);
 	
-/*	if (malloc(sizeof(node_t) == NULL)){
-		DebugPrint("No memory");
-	}*/
-	
 	new_node = (struct node *) malloc(sizeof(node_t));
 	if (new_node == NULL){
 		DebugPrint("No memory");
 	}
-	
-/*	uint16_t adress;
-	DebugPrint("\r\nadress");
-	adress = new_node;
-	itoa(adress,print,10);
-	DebugPrint(print);
-	DebugPrint("\r\n");
-*/	
+
 	memset(new_node, 0, sizeof(node_t));
 	
 	for (int item = 0; item < DATASIZE; ++item){
 		new_node -> data[item] = dataInternal[item];
-		//DebugPrint("\r\nnew_node\r\n");
-		//DebugPrint("test");
-		//DebugPrint(new_node ->data[item]);
 	}
 	
 	new_node -> next = *listHead;
 	*listHead = new_node;
-	DebugPrint(new_node -> data[DATASIZE-1]);
-	
-	DebugPrint("\n\r");
 }
 
 char returnArray[DATASIZE];

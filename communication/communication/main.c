@@ -12,7 +12,7 @@
 #define C0_BAUD          115200    //!< baud rate
 #define C0_CLK2X         0         //!< no double clock speed
 
-#define CLEARTERM "\e[1;1H\e[2J"
+
 
 #include "uart.h"
 
@@ -35,17 +35,6 @@ int main(void){
 	
 	DebugPrint(CLEARTERM);
 	
-/*	while (1)
-	{
-		DebugPrint("Great\r\n");
-		_delay_ms(UPDATEINTERVAL);
-	}
-	
-
-	DebugPrint("No memory");
-	
-*/	
-	
 	_delay_ms(UPDATEINTERVAL);
 	Command(NCFG0);
 	Command(SBIV500);
@@ -53,41 +42,24 @@ int main(void){
 	char* database [DATASIZE];
 	char buffer [12] = "abcdefg";
 	
-	uint16_t adress;
-	char* print;
-	
-	database[0]= buffer;
-	for (int i = 1; i < DATASIZE; ++i){
+	for (int i = 0; i < DATASIZE; ++i){
 		database[i]= buffer;
-		
-		adress = &database[i];
-		itoa(adress,print,10);
-		DebugPrint(print);
-		DebugPrint("\r\n");
 	}
-	
-	DebugPrint("\r\n");
-	char* val;
-	const char* databaseSize;
-	databaseSize = *database;
-	size_t len = strlen(databaseSize);
-	itoa(len,val,10);
-	DebugPrint(val);
-	DebugPrint("\r\n");
 
-	for (int i = 1; i < 20; ++i){
+//	for (int i = 1; i < 20; ++i){
 	  _delay_ms(UPDATEINTERVAL);	
 	  insert(&listHead,database);
-	}
-	print_list(listHead);
+//	}
+//	print_list(listHead);
 	
 	
 	while(1) {
-/*		char message[128];
+		char message[128];
 		
 		memset(message, EOS, strlen(message));
+		//DebugPrint(CLEARTERM);
 		_delay_ms(UPDATEINTERVAL);
-		DebugPrint(CLEARTERM);
+		
 		//DebugPrint(TranslateMessage());
 		strcpy(message,TranslateMessage());
 		
@@ -97,7 +69,7 @@ int main(void){
 		}else{
 			DebugPrint("Not valid");
 		}
-*/
+
 	}
 
 }
