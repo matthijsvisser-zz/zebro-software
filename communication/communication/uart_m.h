@@ -7,7 +7,7 @@
 **/
 
 #ifndef UART_M_H_
-#define UART_M_
+#define UART_M_H_
 
 #include <stdio.h>
 #include <string.h>

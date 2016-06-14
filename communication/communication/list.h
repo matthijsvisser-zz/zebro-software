@@ -9,6 +9,7 @@
 #ifndef LIST_H_
 #define LIST_H_
 
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <util/delay.h>

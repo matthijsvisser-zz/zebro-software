@@ -142,12 +142,6 @@
     <Compile Include="main.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="stackmon.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="stackmon.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="transceive.c">
       <SubType>compile</SubType>
     </Compile>

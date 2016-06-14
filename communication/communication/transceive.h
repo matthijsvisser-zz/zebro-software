@@ -8,6 +8,7 @@
 #ifndef TRANSCEIVE_H_
 #define TRANSCEIVE_H_
 
+#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <avr/io.h>

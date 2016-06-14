@@ -14,14 +14,7 @@
 
 #define CLEARTERM "\e[1;1H\e[2J"
 
-
 #include "uart.h"
-#include "list.h"
-#include "main.h"
-#include <avr/pgmspace.h>
-
-#include "stackmon.h"
-
 
 
 void init_uart(USART_data_t *uart, USART_t *usart, uint32_t f_cpu, uint32_t baud, uint8_t clk2x);

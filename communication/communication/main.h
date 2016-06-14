@@ -1,7 +1,9 @@
 #ifndef MAIN_H_
 #define MAIN_H_
 
+#ifndef F_CPU
 #define F_CPU 32000000UL
+#endif
 //#define PERIOD (3199631/369) //PERIOD= 32000000/(x+1)
 //#define DUTY 0.5*PERIOD
 
@@ -12,8 +14,11 @@
 #include <string.h>
 
 #include "clk.h"
+
+#include "list.h"
 #include "transceive.h"
 #include "uart_m.h"
+
 
 
 
