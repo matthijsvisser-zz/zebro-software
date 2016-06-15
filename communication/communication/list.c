@@ -21,7 +21,7 @@ void printHeaderList (void){
     	DebugPrint("Data[");
 		itoa(iteration, number, 10);
 		DebugPrint(number);
-		DebugPrint("]\t");
+		DebugPrint("]\t\t");
     }
     DebugPrint("\r\n");
 }

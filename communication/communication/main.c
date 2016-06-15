@@ -38,7 +38,8 @@ int main(void){
 	_delay_ms(UPDATEINTERVAL);
 	Command(NCFG0);
 	Command(SBIV500);
-	
+
+/*	
 	char* database [DATASIZE];
 	char buffer [12] = "abcdefg";
 	
@@ -51,7 +52,7 @@ int main(void){
 	  insert(&listHead,database);
 //	}
 //	print_list(listHead);
-	
+*/	
 	
 	while(1) {
 		char message[128];

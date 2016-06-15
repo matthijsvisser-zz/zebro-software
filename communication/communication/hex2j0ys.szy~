@@ -43,35 +43,45 @@ uint8_t ValidateMessage (char *message, uint8_t command){
     }
 }
 
-	
-//command(sbiv 1000);						// set broadcast interval
-//Rx1: *RRN: AA1122334455,1F3CFF322133,0,001843,04,-56
-
 void fillpopulationlist(char *message){				//*RRN bericht
-	char* messagePointer;
-	char* databaseRow [DATASIZE];
-	uint8_t count = 0;
-	row_t* rowx;
+	char *messagePointer;
+	char srcid[13], destid[13];
+	int distance[6];
+	uint8_t count, c;
+	c = 0;
+	count = 0;
 
-	rowx = (struct row *) malloc(sizeof(row_t));
-
+	memset(srcid, EOS, strlen(srcid));	
 	messagePointer = message;
+	
+	//command(sbiv 1000);						// set broadcast interval
+	//Rx1: *RRN: AA1122334455,1F3CFF322133,0,001843,04,-56
 	
 	*messagePointer++;
 	
 	while(*messagePointer != ','){
-		rowx -> id[count] = *messagePointer;
+		srcid[count] = *messagePointer;
 		*messagePointer++;
 		count++;
 	}
-	rowx -> id[count] = EOS;
+	
+	srcid[count] = EOS;
 
-	databaseRow[0] = rowx -> id;
-	databaseRow[1] = rowx -> longRange;
-	databaseRow[2] = rowx -> shortX;
-	databaseRow[3] = rowx -> shortY;
-	databaseRow[4] = rowx -> status;
+	char* databaseRow [DATASIZE];
+	//char* datafield = srcid;
+	memset(*databaseRow, EOS, strlen(*databaseRow));
+	char buffer [12] = "aap";
+	
+	//strcpy(database[0],srcid);
+	
+	for (int i = 0; i < DATASIZE; ++i){
+		databaseRow[i] = srcid;
+		//*database[i]= *empty;
+		//database[i] = buffer;
+	}
+	
 	insert(&listHead,databaseRow);
+	//append(listHead,database);
 	
 	DebugPrint(CLEARTERM);
 	print_list(listHead);
@@ -154,7 +164,7 @@ void DetermineCommandtype (char *message){
 	memset(command, EOS, strlen(command));	
 	messagePointer = message;
 	
-	//DebugPrint(message);
+	DebugPrint(message);
 
 	*messagePointer++;
 	

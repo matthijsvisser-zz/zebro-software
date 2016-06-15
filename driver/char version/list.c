@@ -8,6 +8,8 @@
 
 #include "list.h"
 
+char* returnArray[DATASIZE];
+
 void printHeaderList (void){
 	printf("\nPopulationlist\n");
     printf("Nr.\t");
@@ -99,23 +101,35 @@ void insert (node_t ** head, char* data[DATASIZE]){
  * @param  item 	Used for iteration
  * @return returnArray Returns a pointer to the array where the data is stored. 
  */
-/*int* pop (node_t ** head){
-    static int returnArray[DATASIZE];
+char* pop (node_t ** head){
+//  static int returnArray[DATASIZE];
+    //print_list(head);
+/*
     node_t * next_node = NULL;
 
+
+
     if (*head == NULL) {
+    	printf("null\n");
         return NULL;
     }
-    next_node = (*head)->next;
+
+    next_node = (*head)-> next;
+
     for (int item = 0; item < DATASIZE; ++item){
     	returnArray[item] = (*head) -> data[item];
+    	printf("%s\n", (*head) -> data[item]);
 	}
 
     free(*head);
     *head = next_node;
 
-	return returnArray;
-}*/
+    printf("test\n");
+    //printf("%s\n",returnArray[1]);
+    printf("test\n");
+*/
+	return *returnArray;
+}
 
 /**
  * Pops the data array with the given index number from the list and 
@@ -155,7 +169,7 @@ void insert (node_t ** head, char* data[DATASIZE]){
 	return returnArray;
 }*/
 
-char returnArray[DATASIZE];
+
 
 /**
  * returns the data array with the given index number from the list.
@@ -248,8 +262,7 @@ int sizeOfList(node_t *head){
 	return sizeOfList;
 }
 
-int main(void){
-
+void repeat(){
 	char* datb[DATASIZE];
 	char var0 [] = "abce";
 	char var1 [] = "fghi";
@@ -272,7 +285,30 @@ int main(void){
 	}
 	insert(&head,datb);
 
-	// print_list(head);
+	printf("size of list:%d\n",sizeOfList(head));
+	print_list(head);
+}
+
+int main(void){
+	int count=0;
+	char* value;
+
+	while(count < 2){
+		repeat();
+		count++;
+	}
+
+//	printf("%d\n", sizeOfList(head));
+
+	printf("POP't information\n");
+	//value = popListByValue(&head, 8, sizeOfList(head));
+	value = pop(&head);
+//	for (int i = 0; i < DATASIZE; ++i){
+//		printf("%s\t",value);
+//		*value++;
+//	}
+
+	print_list(head);
 
 /*	for (int i = 0; i < DATASIZE; ++i){
 		printf("%s\t", datb[i]);
@@ -286,8 +322,7 @@ int main(void){
 	
 
 
-	printf("size of list:%d\n",sizeOfList(head));
-	print_list(head);
+
 
 /*
 	char* value = 
@@ -299,16 +334,7 @@ int main(void){
 		printf("%s\t",returnArray[i]);
 	}
 */
-/*	printf("POP't information\n");
-	value = popListByValue(&head, 8, sizeOfList(head));
-	if (pop != NULL){
-		for (int i = 0; i < DATASIZE; ++i){
-			printf("%d\t",*value);
-			*value++;
-		}
-	}
 
-	print_list(head);
-*/
+
 	return 0;
 }
