@@ -67,19 +67,23 @@ void fillpopulationlist(char *message){				//*RRN bericht
 	
 	srcid[count] = EOS;
 
-	char* database [8];
+	char* database [DATASIZE];
 	char* datafield = srcid;
+	memset(*database, EOS, strlen(*database));
+	char buffer [12] = "aap";
 	
-	database[0] = datafield;
+	//strcpy(database[0],srcid);
 	
-	for (int i = 0; i < 8; ++i){
+	for (int i = 0; i < DATASIZE; ++i){
+		database[i] = srcid;
 		//*database[i]= *empty;
-		*database[i] = 'a';
+		//database[i] = buffer;
 	}
 	
-	//insert(&listHead,*database);
-	//append(listHead,database);
+	//insert(&listHead,database);
+	append(listHead,database);
 	
+	DebugPrint(CLEARTERM);
 	print_list(listHead);
 	
 	

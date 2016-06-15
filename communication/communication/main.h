@@ -29,7 +29,7 @@ char * TranslateMessage (void);
 void DetermineCommandtype ();
 
 
-
+#define CLEARTERM "\e[1;1H\e[2J"
 
 
 
