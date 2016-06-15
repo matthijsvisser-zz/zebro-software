@@ -12,7 +12,7 @@ void printHeaderList (void){
 	printf("\nPopulationlist\n");
     printf("Nr.\t");
     for (int iteration = 0; iteration < DATASIZE; ++iteration){
-    	printf("Data[%d]\t\t", iteration);
+    	printf("Data[%d]\t", iteration);
     }
     printf("\n");
 }
@@ -70,7 +70,7 @@ void print_list(node_t *head) {
  * @param  next    Status pointer to the next memory location
  * @param  item 	Used for iteration
  */
-void insert (node_t ** head, char* dataInternal[DATASIZE]){
+void insert (node_t ** head, char* data[DATASIZE]){
 	
 /*	for (int i = 0; i < DATASIZE; ++i){
 		printf("%s\t", dataInternal[i]);
@@ -83,7 +83,7 @@ void insert (node_t ** head, char* dataInternal[DATASIZE]){
 	for (int item = 0; item < DATASIZE; ++item){
 
 		//(*new_node).data[item] = data[item]
-		new_node -> data[item] = dataInternal[item];
+		new_node -> data[item] = data[item];
 	}
 	new_node -> next = *head;
 	*head = new_node;
@@ -251,14 +251,26 @@ int sizeOfList(node_t *head){
 int main(void){
 
 	char* datb[DATASIZE];
-	char var [] = "abcefghijklm1231232";
+	char var0 [] = "abce";
+	char var1 [] = "fghi";
+	char var2 [] = "jklm";
 
 	system("clear");
 
 	for (int i = 0; i < DATASIZE; ++i){
-		datb[i]= var;
+		datb[i]= var0;
 	}
+	insert(&head,datb);
 
+	for (int i = 0; i < DATASIZE; ++i){
+		datb[i]= var1;
+	}
+	insert(&head,datb);
+
+	for (int i = 0; i < DATASIZE; ++i){
+		datb[i]= var2;
+	}
+	insert(&head,datb);
 
 	// print_list(head);
 
@@ -267,9 +279,9 @@ int main(void){
 	}
 	printf("\n");
 */	
-	for (int i = 0; i < 10; ++i){
+/*	for (int i = 0; i < 10; ++i){
 		insert(&head,datb);
-	}
+	}*/
 	//append(head,datb);
 	
 

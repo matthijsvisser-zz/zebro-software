@@ -215,31 +215,26 @@ int main(void){
 		datb[i]=i+1;
 	}
 
-	append(head,datb);
+	insert(&head,datb);
 
 	for (int i = 0; i < DATASIZE; ++i){
 		datb[i]=i+8;
 	}
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
-	append(head,datb);
+	insert(&head,datb);
+	for (int i = 0; i < DATASIZE; ++i){
+		datb[i]=i+9;
+	}
+	insert(&head,datb);
+	for (int i = 0; i < DATASIZE; ++i){
+		datb[i]=i+10;
+	}
+	insert(&head,datb);
+	insert(&head,datb);
+	insert(&head,datb);
+	insert(&head,datb);
+	insert(&head,datb);
+	insert(&head,datb);
+	insert(&head,datb);
 
 	// print_list(head);
 
