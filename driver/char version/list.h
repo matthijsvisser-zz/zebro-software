@@ -17,6 +17,14 @@ typedef struct node {
 	struct node * next;
 }node_t;
 
+typedef struct row {
+	char id			[13];
+	char longRange	[5];
+	char shortX		[3];
+	char shortY		[3];
+	char status		[2];
+}row_t;
+
 node_t *head = NULL;
 
 int sizeOfList(node_t *head);

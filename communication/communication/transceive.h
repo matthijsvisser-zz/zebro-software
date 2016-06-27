@@ -74,6 +74,8 @@ void DetermineCommandtype ();
 char * TranslateMessage (void);
 uint8_t ValidateMessage (char *message, uint8_t command);
 uint16_t uart_getc(USART_data_t *uart);
+char* getMyNodeID ();
+
 
 
 

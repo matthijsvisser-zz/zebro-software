@@ -38,24 +38,14 @@ int main(void){
 	_delay_ms(UPDATEINTERVAL);
 	Command(NCFG0);
 	Command(SBIV500);
-
-/*	
-	char* database [DATASIZE];
-	char buffer [12] = "abcdefg";
 	
-	for (int i = 0; i < DATASIZE; ++i){
-		database[i]= buffer;
-	}
-
-//	for (int i = 1; i < 20; ++i){
-	  _delay_ms(UPDATEINTERVAL);	
-	  insert(&listHead,database);
-//	}
-//	print_list(listHead);
-*/	
+	_delay_ms(UPDATEINTERVAL);
+	getMyNodeID();
 	
 	while(1) {
 		char message[128];
+		
+		//_delay_ms(2000);
 		
 		memset(message, EOS, strlen(message));
 		//DebugPrint(CLEARTERM);

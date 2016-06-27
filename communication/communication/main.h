@@ -27,6 +27,8 @@
 
 char * TranslateMessage (void);
 void DetermineCommandtype ();
+char* getMyNodeID ();
+//void getMyNodeID ();
 
 
 #define CLEARTERM "\e[1;1H\e[2J"
